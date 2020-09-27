@@ -10,6 +10,7 @@ let animacion;
 let tiempoRama = 0;
 let tiempoLata = 0;
 let puntaje = 0;
+let txtPuntaje;
 
 const movimiento = [1, 0, 2, 0, 1];
 
@@ -108,6 +109,14 @@ const estadoPricipal = {
 
     //boton cursores
     cursores = juego.input.keyboard.createCursorKeys();
+
+    // Puntaje
+    txtPuntaje = juego.add.text(15, 15, puntaje, {
+      font: "bold 30px Arial",
+      fill: "white",
+      align: "center",
+    });
+    txtIniciar.anchor.setTo(0);
   },
 
   update: function () {
@@ -148,6 +157,31 @@ const estadoPricipal = {
       lata.body.velocity.y = 300;
       tiempoLata = juego.time.now + 5000;
     }
+
+    if (puntaje < 0) {
+      musica.stop();
+      this.state.start("GameOver");
+    }
+
+    if (puntaje === 10) {
+      musica.stop();
+      //this.state.start("JuegoNivel2");
+    }
+
+    juego.physics.arcade.overlap(grood, ramas, this.tocoRama, null, this);
+    juego.physics.arcade.overlap(grood, latas, this.tocoLata, null, this);
+  },
+
+  tocoRama: function (grood, rama) {
+    rama.kill();
+    puntaje++;
+    txtPuntaje.text = puntaje;
+  },
+
+  tocoLata: function (grood, lata) {
+    lata.kill();
+    puntaje--;
+    txtPuntaje.text = puntaje;
   },
 };
 

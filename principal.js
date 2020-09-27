@@ -5,7 +5,7 @@ var juego = new Phaser.Game(
   "bloque_juego"
 );
 juego.state.add("Menu", Menu);
-juego.state.add("Juego", estadoPricipal);
-// juego.state.add("Game_Over", Game_Over);
+juego.state.add("JuegoNivel1", estadoPricipal);
+juego.state.add("GameOver", GameOver);
 
 juego.state.start("Menu");

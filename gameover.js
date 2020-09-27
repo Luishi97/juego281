@@ -1,4 +1,4 @@
-const Menu = {
+const GameOver = {
   preload: function () {
     juego.stage.backgroundColor = "#FFF";
     juego.load.image("boton", "./assets/interfaz/btn_play.png");
@@ -17,7 +17,7 @@ const Menu = {
     const txtIniciar = juego.add.text(
       juego.width / 2,
       juego.height / 2 - 85,
-      "IniciarJuego",
+      "Juego terminado :(",
       { font: "bold 24px sans-serif", fill: "black", align: "center" }
     );
     txtIniciar.anchor.setTo(0.5);
@@ -29,8 +29,7 @@ const Menu = {
     );
     txtTitulo.anchor.setTo(0.5);
   },
-
   iniciarJuego: function () {
-    this.state.start("JuegoNivel1");
+    this.state.start("Juego");
   },
 };
